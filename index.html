@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stackerzzz Coming Soon</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     /* Reset */
     * {
@@ -21,16 +22,46 @@
       font-family: 'Poppins', sans-serif;
       color: #fff;
       overflow: hidden;
+      perspective: 1000px;
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 3rem;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      transform-style: preserve-3d;
+      animation: containerFloat 8s ease-in-out infinite;
+      overflow: hidden;
+    }
+
+    @keyframes containerFloat {
+      0%, 100% { transform: translateY(0) rotateX(2deg); }
+      50% { transform: translateY(-15px) rotateX(-2deg); }
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 4rem;
       text-align: center;
-      letter-spacing: 3px;
-      background: linear-gradient(90deg, #ff8a00, #e52e71, #9d50bb);
+      letter-spacing: 4px;
+      margin-bottom: 2rem;
+      background: linear-gradient(90deg, #ff8a00, #e52e71, #9d50bb, #ff8a00);
+      background-size: 300% 100%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: glow 2s ease-in-out infinite alternate;
+      animation: glow 2s ease-in-out infinite alternate, gradientShift 4s linear infinite;
+      position: relative;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
     }
 
     @keyframes glow {
@@ -42,10 +73,150 @@
       to {
         text-shadow: 0 0 20px rgba(255, 255, 255, 0.4),
                      0 0 40px rgba(229, 46, 113, 0.6),
-                     0 0 60px rgba(157, 80, 187, 0.6);
+                     0 0 60px rgba(157, 80, 187, 0.6),
+                     0 0 80px rgba(157, 80, 187, 0.8);
       }
     }
 
+    .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out forwards;
+      animation-delay: 1s;
+      color: #f1f1f1;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out forwards;
+      animation-delay: 1.8s;
+    }
+
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 10px;
+      min-width: 90px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease;
+    }
+
+    .countdown-item:hover {
+      transform: translateY(-5px) scale(1.05);
+    }
+
+    .countdown-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, #ff8a00, #e52e71);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .countdown-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 0.5rem;
+      color: #ccc;
+    }
+
+    .subscribe-form {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out forwards;
+      animation-delay: 2.2s;
+    }
+
+    .email-input {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      border: none;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1rem;
+      outline: none;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .email-input:focus {
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 5px 20px rgba(229, 46, 113, 0.4);
+    }
+
+    .email-input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .notify-btn {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #ff8a00, #e52e71);
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(229, 46, 113, 0.4);
+    }
+
+    .notify-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(229, 46, 113, 0.6);
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out forwards;
+      animation-delay: 2.6s;
+    }
+
+    .social-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .social-icon:hover {
+      transform: translateY(-5px) scale(1.1);
+      background: linear-gradient(45deg, #ff8a00, #e52e71);
+      box-shadow: 0 10px 20px rgba(229, 46, 113, 0.4);
+    }
+
+    /* Animated background elements */
     .stars {
       position: absolute;
       width: 100%;
@@ -68,16 +239,170 @@
       0%, 100% { opacity: 0.2; transform: scale(0.8); }
       50% { opacity: 1; transform: scale(1.2); }
     }
+
+    .floating-shapes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      filter: blur(40px);
+      animation: float 20s infinite linear;
+    }
+
+    .shape:nth-child(1) {
+      width: 300px;
+      height: 300px;
+      background: #ff8a00;
+      top: 10%;
+      left: 5%;
+      animation-duration: 25s;
+    }
+
+    .shape:nth-child(2) {
+      width: 400px;
+      height: 400px;
+      background: #e52e71;
+      bottom: 15%;
+      right: 5%;
+      animation-duration: 30s;
+    }
+
+    .shape:nth-child(3) {
+      width: 250px;
+      height: 250px;
+      background: #9d50bb;
+      top: 50%;
+      left: 20%;
+      animation-duration: 35s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      50% {
+        transform: translate(20px, 30px) rotate(180deg);
+      }
+      100% {
+        transform: translate(0, 0) rotate(360deg);
+      }
+    }
+
+    .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      opacity: 0;
+      animation: particleFloat 15s infinite linear;
+    }
+
+    @keyframes particleFloat {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .countdown {
+        flex-wrap: wrap;
+      }
+      
+      .subscribe-form {
+        flex-direction: column;
+      }
+      
+      .container {
+        padding: 2rem;
+        margin: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="stars" id="stars"></div>
-  <h1>Stay Tuned,<br>✨ Stackerzzz are coming ✨</h1>
+  <div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  <div class="particles" id="particles"></div>
+  
+  <div class="container">
+    <h1>Stacker💤</h1>
+    <p class="subtitle">Booting... 🚀</p>
+    
+    <div class="countdown">
+      <div class="countdown-item">
+        <span class="countdown-value" id="days">00</span>
+        <span class="countdown-label">Days</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-value" id="hours">00</span>
+        <span class="countdown-label">Hours</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-value" id="minutes">00</span>
+        <span class="countdown-label">Minutes</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-value" id="seconds">00</span>
+        <span class="countdown-label">Seconds</span>
+      </div>
+    </div>
+    
+    <!--<form class="subscribe-form">-->
+    <!--  <input type="email" class="email-input" placeholder="Enter your email for updates" required>-->
+    <!--  <button type="submit" class="notify-btn">Notify Me</button>-->
+    <!--</form>-->
+    
+    <div class="social-icons">
+      <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+      <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+      <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
 
   <script>
     // Generate random stars for background
     const starsContainer = document.getElementById('stars');
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 100; i++) {
       let star = document.createElement('div');
       star.classList.add('star');
       let size = Math.random() * 3 + 2 + 'px';
@@ -86,8 +411,55 @@
       star.style.top = Math.random() * window.innerHeight + 'px';
       star.style.left = Math.random() * window.innerWidth + 'px';
       star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      star.style.animationDelay = (Math.random() * 5) + 's';
       starsContainer.appendChild(star);
     }
+    
+    // Generate floating particles
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+      let particle = document.createElement('div');
+      particle.classList.add('particle');
+      let size = Math.random() * 5 + 2 + 'px';
+      particle.style.width = size;
+      particle.style.height = size;
+      particle.style.left = Math.random() * window.innerWidth + 'px';
+      particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      particle.style.animationDelay = (Math.random() * 5) + 's';
+      particlesContainer.appendChild(particle);
+    }
+    
+    // Countdown timer
+    const countdownDate = new Date();
+    countdownDate.setDate(countdownDate.getDate() + 90);
+    
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      document.getElementById("days").textContent = days.toString().padStart(2, '0');
+      document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+      document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+      document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+    }
+    
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+    
+    // Form submission
+    document.querySelector('.subscribe-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = this.querySelector('.email-input').value;
+      if (email) {
+        alert(`Thanks! We'll notify you at ${email} when we launch.`);
+        this.querySelector('.email-input').value = '';
+      }
+    });
   </script>
 </body>
 </html>
